@@ -1,26 +1,123 @@
 @import "tailwindcss";
 
+/* ============ Power Moves — Design Tokens ============ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #07080a;
+  --foreground: #f4f5f7;
+
+  --pm-ink: #07080a;        /* near-black base */
+  --pm-coal: #0e1014;       /* panel */
+  --pm-steel: #16191f;      /* raised surface */
+  --pm-line: #23262e;       /* hairlines */
+  --pm-mute: #8c93a1;       /* muted text */
+  --pm-red: #ff2630;        /* signal red */
+  --pm-red-deep: #c80f18;
+  --pm-amber: #ffb020;      /* energy accent */
+  --pm-white: #f4f5f7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--pm-ink);
+  --color-coal: var(--pm-coal);
+  --color-steel: var(--pm-steel);
+  --color-line: var(--pm-line);
+  --color-mute: var(--pm-mute);
+  --color-red: var(--pm-red);
+  --color-red-deep: var(--pm-red-deep);
+  --color-amber: var(--pm-amber);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-archivo);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background: var(--pm-ink);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--pm-red);
+  color: #fff;
+}
+
+/* Thin industrial scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--pm-ink); }
+::-webkit-scrollbar-thumb { background: var(--pm-line); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--pm-red); }
+
+/* ============ Utilities ============ */
+.font-display { font-family: var(--font-display), Arial, sans-serif; }
+
+.text-balance { text-wrap: balance; }
+
+.heading-mega {
+  font-family: var(--font-display), Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+/* engineered blueprint grid */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.bg-grid-fade {
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 35%, #000 30%, transparent 75%);
+          mask-image: radial-gradient(ellipse 70% 70% at 50% 35%, #000 30%, transparent 75%);
+}
+
+.glow-red {
+  box-shadow: 0 0 0 1px rgba(255,38,48,0.4), 0 18px 60px -12px rgba(255,38,48,0.45);
+}
+
+.hairline { border-color: var(--pm-line); }
+
+/* ============ Keyframes ============ */
+@keyframes pm-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee { animation: pm-marquee 32s linear infinite; }
+
+@keyframes pm-scan {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(900%); opacity: 0; }
+}
+.animate-scan { animation: pm-scan 6s ease-in-out infinite; }
+
+@keyframes pm-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%      { opacity: 0.9;  transform: scale(1.06); }
+}
+.animate-pulse-slow { animation: pm-pulse 4.5s ease-in-out infinite; }
+
+@keyframes pm-dash {
+  to { stroke-dashoffset: -1000; }
+}
+.animate-dash { animation: pm-dash 14s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee, .animate-scan, .animate-pulse-slow, .animate-dash {
+    animation: none !important;
+  }
 }
