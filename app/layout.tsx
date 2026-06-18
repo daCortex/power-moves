@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Archivo } from "next/font/google";
+import { Inter, Archivo, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,10 +15,17 @@ const archivo = Archivo({
   display: "swap",
 });
 
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-mono-tech",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Power Moves — Electrical Engineering, Supply & EPC Turnkey Solutions",
   description:
-    "Power Moves engineers, supplies and delivers the electrical backbone of modern industry — transformers, switchgear, substations and full EPC turnkey power systems.",
+    "Power Moves engineers, supplies and delivers the electrical backbone of modern industry — transformers, switchgear, substations and full EPC turnkey power systems. Licensed ABB supplier, ISO-certified.",
   keywords: [
     "electrical engineering",
     "EPC turnkey",
@@ -27,6 +34,7 @@ export const metadata: Metadata = {
     "substations",
     "power distribution",
     "industrial power",
+    "ABB supplier",
   ],
 };
 
@@ -38,9 +46,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${archivo.variable} h-full antialiased`}
+      className={`${inter.variable} ${archivo.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-ink text-foreground">{children}</body>
+      <body className="min-h-full bg-paper text-graphite">{children}</body>
     </html>
   );
 }

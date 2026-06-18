@@ -11,61 +11,58 @@ function Bolt({ className = "" }: { className?: string }) {
 }
 
 const NAV = {
-  Solutions: ["Product Trading", "EPC Turnkey", "Substations", "Industrial Power"],
+  Capabilities: ["Product Trading", "EPC Turnkey", "Substations", "Industrial Power"],
   Products: ["Transformers", "MV Switchgear", "LV Switchgear", "Package Substations"],
-  Company: ["About", "Industries", "Credentials", "Contact"],
+  Company: ["Process", "Industries", "Standards", "FAQ"],
 };
 
 export default function Footer() {
   return (
-    <footer id="contact" className="scroll-mt-20 border-t border-line bg-ink">
+    <footer id="contact" className="scroll-mt-28 bg-paper">
       {/* contact band */}
-      <div className="mx-auto max-w-7xl px-5 py-20 md:px-8">
+      <div className="mx-auto max-w-[88rem] px-6 py-20">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
           <Reveal>
-            <div className="text-xs font-medium uppercase tracking-[0.3em] text-red">
-              Get in touch
+            <div className="flex items-center gap-3 tech-label text-red">
+              <span className="font-mono-tech">[ 09 ]</span>
+              <span className="h-px w-8 bg-red" /> Get in touch
             </div>
-            <h2 className="mt-5 max-w-xl heading-mega text-[clamp(1.75rem,4vw,3rem)] text-white">
+            <h2 className="mt-5 max-w-xl heading-mega text-[clamp(1.75rem,4.5vw,3.25rem)] text-ink">
               Let&apos;s engineer your next power system
             </h2>
-            <p className="mt-5 max-w-md text-mute">
-              Tell us what you&apos;re building. We&apos;ll bring the equipment,
-              the engineering and the delivery.
+            <p className="mt-5 max-w-md text-graphite">
+              Tell us what you&apos;re building — load, voltage, site and scope.
+              We&apos;ll bring the equipment, the engineering and the delivery.
             </p>
             <a
               href="mailto:commercial.agh@agholding.com"
-              className="group mt-8 inline-flex items-center gap-2 bg-red px-7 py-4 text-sm font-semibold uppercase tracking-wide text-white transition-all hover:bg-white hover:text-ink"
+              className="group mt-8 inline-flex items-center gap-3 bg-ink px-7 py-4 tech-label text-paper transition-colors hover:bg-red"
             >
               Request a Quote
-              <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                →
-              </span>
+              <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
             </a>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="grid gap-px border border-line bg-line sm:grid-cols-2">
-              <div className="bg-coal p-6">
-                <div className="text-xs uppercase tracking-wide text-mute">Call</div>
-                <div className="mt-2 space-y-1 text-sm text-white">
+            <div className="grid gap-px border border-line-strong/15 bg-line-strong/15 sm:grid-cols-2">
+              <div className="bg-surface p-6">
+                <div className="tech-label text-steel">Call</div>
+                <div className="mt-2 space-y-1 font-mono-tech text-sm text-ink">
                   <div>09-5506709</div>
                   <div>09-5506710</div>
                   <div>09-425751831</div>
                 </div>
               </div>
-              <div className="bg-coal p-6">
-                <div className="text-xs uppercase tracking-wide text-mute">Email</div>
-                <div className="mt-2 space-y-1 break-all text-sm text-white">
+              <div className="bg-surface p-6">
+                <div className="tech-label text-steel">Email</div>
+                <div className="mt-2 space-y-1 break-all font-mono-tech text-xs text-ink">
                   <div>commercial.agh@agholding.com</div>
                   <div>showroom.sales.agh@agholding.com</div>
                 </div>
               </div>
-              <div className="bg-coal p-6 sm:col-span-2">
-                <div className="text-xs uppercase tracking-wide text-mute">
-                  Showroom · Yangon
-                </div>
-                <div className="mt-2 text-sm leading-relaxed text-white">
+              <div className="bg-surface p-6 sm:col-span-2">
+                <div className="tech-label text-steel">Showroom · Yangon</div>
+                <div className="mt-2 text-sm leading-relaxed text-ink">
                   No. 501/503, Pyay Road (Corner of Pyi Yeik Thar Street),
                   Kamaryut Township, Yangon, Myanmar
                 </div>
@@ -76,37 +73,33 @@ export default function Footer() {
       </div>
 
       {/* link columns */}
-      <div className="border-t border-line">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-8">
+      <div className="border-t border-line-strong/15">
+        <div className="mx-auto grid max-w-[88rem] gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <a href="#top" className="flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center bg-red text-white">
-                <Bolt className="h-4 w-4" />
+              <span className="grid h-10 w-10 place-items-center bg-red text-white">
+                <Bolt className="h-5 w-5" />
               </span>
-              <span className="font-display text-lg font-extrabold uppercase tracking-tight text-white">
+              <span className="font-display text-lg font-extrabold uppercase tracking-tight text-ink">
                 Power<span className="text-red">Moves</span>
               </span>
             </a>
-            <p className="mt-5 max-w-xs text-sm text-mute">
+            <p className="mt-5 max-w-xs text-sm text-steel">
               Electrical engineering, product supply and EPC turnkey solutions
               for modern power infrastructure.
             </p>
+            <div className="mt-5 flex items-center gap-2 tech-label text-steel">
+              <span className="h-2 w-2 bg-red animate-blink" /> Engineered for uptime
+            </div>
           </div>
 
           {Object.entries(NAV).map(([heading, items]) => (
             <div key={heading}>
-              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
-                {heading}
-              </div>
+              <div className="tech-label text-ink">{heading}</div>
               <ul className="mt-4 space-y-2.5">
                 {items.map((item) => (
                   <li key={item}>
-                    <a
-                      href="#"
-                      className="text-sm text-mute transition-colors hover:text-red"
-                    >
-                      {item}
-                    </a>
+                    <a href="#" className="text-sm text-steel transition-colors hover:text-red">{item}</a>
                   </li>
                 ))}
               </ul>
@@ -116,12 +109,13 @@ export default function Footer() {
       </div>
 
       {/* bottom bar */}
-      <div className="border-t border-line">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 text-xs text-mute md:flex-row md:px-8">
-          <div>© {2026} Power Moves. All rights reserved.</div>
-          <div className="flex items-center gap-2 uppercase tracking-[0.2em]">
-            <span className="h-1.5 w-1.5 bg-red animate-pulse-slow" />
-            Engineered for uptime
+      <div className="hazard h-2.5 w-full" />
+      <div className="bg-ink">
+        <div className="mx-auto flex max-w-[88rem] flex-col items-center justify-between gap-3 px-6 py-6 tech-label text-paper/50 md:flex-row">
+          <div>© 2026 Power Moves · Asia General Holding</div>
+          <div className="flex items-center gap-6">
+            <span>YANGON · MYANMAR</span>
+            <span className="hidden sm:inline">N 16.8° E 96.1°</span>
           </div>
         </div>
       </div>

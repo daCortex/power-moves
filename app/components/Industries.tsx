@@ -2,58 +2,35 @@
 
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
+import { SectionHead } from "./Capabilities";
 
 const INDUSTRIES = [
-  "Utility Substations",
-  "Industrial Factories",
-  "Commercial Buildings",
-  "Energy Infrastructure",
-  "Distribution Network Upgrades",
-  "Infrastructure Developments",
+  { name: "Utility Substations", note: "Grid & transmission" },
+  { name: "Industrial Factories", note: "Process & manufacturing" },
+  { name: "Commercial Buildings", note: "Towers & complexes" },
+  { name: "Energy Infrastructure", note: "Generation & renewables" },
+  { name: "Distribution Networks", note: "Upgrades & extensions" },
+  { name: "Infrastructure", note: "Civil & development" },
 ];
 
 function CircuitGraphic() {
   return (
     <svg viewBox="0 0 400 360" className="h-full w-full" fill="none" aria-hidden>
       <defs>
-        <linearGradient id="pmline" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#ff2630" />
-          <stop offset="1" stopColor="#ffb020" />
+        <linearGradient id="pmline2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#d81e26" />
+          <stop offset="1" stopColor="#f4a400" />
         </linearGradient>
       </defs>
-      {/* base traces */}
-      <g stroke="#23262e" strokeWidth="2">
-        <path d="M40 60h120v80h160" />
-        <path d="M40 180h80v120h240" />
-        <path d="M360 60V300" />
-        <path d="M40 300h80" />
-        <path d="M200 60v80" />
+      <g stroke="#15161a" strokeOpacity="0.25" strokeWidth="2">
+        <path d="M40 60h120v80h160" /><path d="M40 180h80v120h240" />
+        <path d="M360 60V300" /><path d="M40 300h80" /><path d="M200 60v80" />
       </g>
-      {/* animated energy trace */}
-      <path
-        d="M40 60h120v80h160V300"
-        stroke="url(#pmline)"
-        strokeWidth="2.5"
-        strokeDasharray="14 10"
-        className="animate-dash"
-      />
-      {/* nodes */}
-      {[
-        [40, 60],
-        [160, 60],
-        [200, 60],
-        [320, 140],
-        [360, 60],
-        [120, 180],
-        [120, 300],
-        [360, 300],
-        [40, 180],
-      ].map(([cx, cy], i) => (
+      <path d="M40 60h120v80h160V300" stroke="url(#pmline2)" strokeWidth="3" strokeDasharray="14 10" className="animate-dash" />
+      {[[40,60],[160,60],[200,60],[320,140],[360,60],[120,180],[120,300],[360,300],[40,180]].map(([cx,cy],i)=>(
         <g key={i}>
-          <circle cx={cx} cy={cy} r="5" fill="#0e1014" stroke="#ff2630" strokeWidth="2" />
-          {i % 3 === 0 && (
-            <circle cx={cx} cy={cy} r="5" fill="none" stroke="#ff2630" strokeWidth="1.5" className="animate-pulse-slow" />
-          )}
+          <circle cx={cx} cy={cy} r="5" fill="#fff" stroke="#15161a" strokeWidth="2" />
+          {i % 3 === 0 && <circle cx={cx} cy={cy} r="5" fill="none" stroke="#d81e26" strokeWidth="1.5" className="animate-blink" />}
         </g>
       ))}
     </svg>
@@ -62,59 +39,48 @@ function CircuitGraphic() {
 
 export default function Industries() {
   return (
-    <section id="industries" className="relative scroll-mt-20 bg-ink py-20 md:py-28">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 md:px-8 lg:grid-cols-2">
+    <section id="industries" className="scroll-mt-28 border-b border-line-strong/15 bg-paper">
+      <div className="mx-auto max-w-[88rem] px-6 py-20 md:py-28">
         <Reveal>
-          <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.3em] text-red">
-            <span className="h-px w-8 bg-red" />
-            Industries we serve
-          </div>
-          <h2 className="mt-5 heading-mega text-[clamp(2rem,5vw,3.5rem)] text-white">
-            Built for the places power can&apos;t fail
-          </h2>
-          <p className="mt-5 max-w-xl text-lg text-mute">
-            From the grid to the factory floor, we keep critical systems
-            energized — engineering reliability into every connection.
-          </p>
+          <SectionHead index="05" kicker="Where we work" title="Industries Served" sub="Power that can't fail" />
+        </Reveal>
 
-          <ul className="mt-8 grid gap-px border border-line bg-line sm:grid-cols-2">
-            {INDUSTRIES.map((ind) => (
-              <li
-                key={ind}
-                className="group flex items-center gap-3 bg-ink px-5 py-4 transition-colors hover:bg-coal"
-              >
-                <span className="h-2 w-2 rotate-45 bg-red transition-transform group-hover:scale-150" />
-                <span className="text-sm font-medium text-white">{ind}</span>
-              </li>
+        <div className="mt-12 grid items-stretch gap-px border border-line-strong/15 bg-line-strong/15 lg:grid-cols-2">
+          {/* industries grid */}
+          <div className="grid grid-cols-1 gap-px bg-line-strong/15 sm:grid-cols-2">
+            {INDUSTRIES.map((ind, i) => (
+              <Reveal key={ind.name} delay={(i % 2) * 0.06}>
+                <div className="group flex h-full items-center justify-between bg-surface px-6 py-7 transition-colors hover:bg-ink">
+                  <div>
+                    <div className="font-display text-xl font-bold text-ink transition-colors group-hover:text-paper">{ind.name}</div>
+                    <div className="tech-label text-steel transition-colors group-hover:text-paper/60">{ind.note}</div>
+                  </div>
+                  <span className="h-3 w-3 rotate-45 bg-red transition-transform group-hover:scale-150" />
+                </div>
+              </Reveal>
             ))}
-          </ul>
-        </Reveal>
+          </div>
 
-        <Reveal delay={0.15}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative aspect-square w-full overflow-hidden border border-line bg-coal p-8"
-          >
-            <div className="absolute inset-0 bg-grid opacity-50" />
-            <div className="relative h-full w-full">
-              <CircuitGraphic />
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-              <div>
-                <div className="font-display text-4xl font-extrabold text-white">
-                  24/7
-                </div>
-                <div className="text-xs uppercase tracking-wide text-mute">
-                  Power you can build on
-                </div>
+          {/* graphic panel */}
+          <Reveal delay={0.15}>
+            <div className="relative flex h-full flex-col bg-ink p-8">
+              <div className="flex items-center justify-between tech-label text-paper/60">
+                <span>NETWORK · COVERAGE</span>
+                <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-amber animate-blink" /> ONLINE</span>
               </div>
-              <span className="h-3 w-3 bg-red animate-pulse-slow" />
+              <div className="relative my-4 flex-1 bg-grid-fine">
+                <CircuitGraphic />
+              </div>
+              <div className="flex items-end justify-between border-t border-paper/15 pt-5">
+                <div>
+                  <div className="font-display text-5xl font-extrabold text-paper">24/7</div>
+                  <div className="tech-label text-paper/60">Power you can build on</div>
+                </div>
+                <span className="hazard h-6 w-24" />
+              </div>
             </div>
-          </motion.div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
