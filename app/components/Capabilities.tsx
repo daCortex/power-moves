@@ -102,9 +102,9 @@ export default function Capabilities() {
           <SectionHead index="02" kicker="What we do" title="Capabilities" sub="Select a discipline" />
         </Reveal>
 
-        <div className="mt-12 grid gap-px border border-line-strong/15 bg-line-strong/15 lg:grid-cols-[0.9fr_1.4fr]">
+        <div className="mt-12 grid gap-4 lg:grid-cols-[0.9fr_1.4fr]">
           {/* Tab list */}
-          <div className="bg-surface">
+          <div className="overflow-hidden rounded-2xl border border-line bg-surface elev">
             {CAPS.map((c, i) => {
               const on = i === active;
               return (
@@ -136,7 +136,7 @@ export default function Capabilities() {
           </div>
 
           {/* Panel */}
-          <div className="relative min-h-[26rem] overflow-hidden bg-paper bg-grid-fine">
+          <div className="relative min-h-[26rem] overflow-hidden rounded-2xl border border-line bg-paper bg-grid-fine elev">
               <motion.div
                 key={cap.no}
                 initial={{ opacity: 0, x: 24 }}
@@ -146,14 +146,14 @@ export default function Capabilities() {
               >
                 <div className="flex items-start justify-between">
                   <span className="font-display text-7xl font-extrabold text-line-strong/15 md:text-8xl">{cap.no}</span>
-                  <span className="hazard-red h-5 w-16" />
+                  <span className="accent-bar h-1.5 w-16 rounded-full" />
                 </div>
                 <h3 className="mt-4 font-display text-3xl font-extrabold uppercase text-ink md:text-4xl">{cap.title}</h3>
                 <p className="mt-4 max-w-lg text-graphite">{cap.desc}</p>
 
-                <ul className="mt-7 grid gap-px border-l border-t border-line-strong/15 sm:grid-cols-2">
+                <ul className="mt-7 grid gap-2 sm:grid-cols-2">
                   {cap.points.map((p) => (
-                    <li key={p} className="flex items-start gap-3 border-b border-r border-line-strong/15 bg-surface/60 px-4 py-3.5 text-sm text-graphite">
+                    <li key={p} className="flex items-start gap-3 rounded-lg border border-line bg-surface/70 px-4 py-3.5 text-sm text-graphite">
                       <span className="mt-1 h-1.5 w-1.5 shrink-0 rotate-45 bg-red" />
                       {p}
                     </li>
@@ -182,7 +182,7 @@ export function SectionHead({
   index, kicker, title, sub,
 }: { index: string; kicker: string; title: string; sub?: string }) {
   return (
-    <div className="flex flex-col gap-4 border-b border-line-strong/15 pb-6 md:flex-row md:items-end md:justify-between">
+    <div className="flex flex-col gap-4 border-b border-line pb-6 md:flex-row md:items-end md:justify-between">
       <div>
         <div className="flex items-center gap-3 tech-label text-red">
           <span className="font-mono-tech">[ {index} ]</span>

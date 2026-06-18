@@ -45,12 +45,12 @@ export default function Industries() {
           <SectionHead index="05" kicker="Where we work" title="Industries Served" sub="Power that can't fail" />
         </Reveal>
 
-        <div className="mt-12 grid items-stretch gap-px border border-line-strong/15 bg-line-strong/15 lg:grid-cols-2">
+        <div className="mt-12 grid items-stretch gap-4 lg:grid-cols-2">
           {/* industries grid */}
-          <div className="grid grid-cols-1 gap-px bg-line-strong/15 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {INDUSTRIES.map((ind, i) => (
               <Reveal key={ind.name} delay={(i % 2) * 0.06}>
-                <div className="group flex h-full items-center justify-between bg-surface px-6 py-7 transition-colors hover:bg-ink">
+                <div className="group flex h-full items-center justify-between rounded-xl border border-line bg-surface px-6 py-7 transition-all hover:border-ink hover:bg-ink hover:shadow-md">
                   <div>
                     <div className="font-display text-xl font-bold text-ink transition-colors group-hover:text-paper">{ind.name}</div>
                     <div className="tech-label text-steel transition-colors group-hover:text-paper/60">{ind.note}</div>
@@ -63,9 +63,9 @@ export default function Industries() {
 
           {/* graphic panel */}
           <Reveal delay={0.15}>
-            <div className="relative flex h-full flex-col bg-ink p-8">
+            <div className="relative flex h-full flex-col rounded-2xl bg-ink p-8 elev-lg">
               <div className="flex items-center justify-between tech-label text-paper/60">
-                <span>NETWORK · COVERAGE</span>
+                <span>Network · Coverage</span>
                 <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-amber animate-blink" /> ONLINE</span>
               </div>
               <div className="relative my-4 flex-1 bg-grid-fine">
@@ -76,7 +76,7 @@ export default function Industries() {
                   <div className="font-display text-5xl font-extrabold text-paper">24/7</div>
                   <div className="tech-label text-paper/60">Power you can build on</div>
                 </div>
-                <span className="hazard h-6 w-24" />
+                <span className="accent-bar h-1.5 w-24 rounded-full" />
               </div>
             </div>
           </Reveal>

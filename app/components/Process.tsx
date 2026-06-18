@@ -25,7 +25,7 @@ export default function Process() {
 
         {/* progress rail */}
         <Reveal delay={0.1}>
-          <div className="mt-12 grid grid-cols-5 gap-px border border-line-strong/15 bg-line-strong/15">
+          <div className="mt-12 grid grid-cols-5 gap-2 md:gap-3">
             {STEPS.map((s, i) => {
               const on = i === active;
               const done = i < active;
@@ -34,8 +34,8 @@ export default function Process() {
                   key={s.no}
                   onClick={() => setActive(i)}
                   onMouseEnter={() => setActive(i)}
-                  className={`relative px-3 py-5 text-center transition-colors ${
-                    on ? "bg-ink" : "bg-surface hover:bg-paper"
+                  className={`relative overflow-hidden rounded-xl border px-3 py-5 text-center transition-all ${
+                    on ? "border-ink bg-ink elev" : "border-line bg-surface hover:border-line-strong/30 hover:shadow-md"
                   }`}
                 >
                   <span className={`font-mono-tech text-xs ${on ? "text-amber" : done ? "text-red" : "text-mute"}`}>{s.no}</span>
@@ -52,9 +52,9 @@ export default function Process() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="grid border-x border-b border-line-strong/15 bg-paper bg-grid-fine md:grid-cols-[auto_1fr]">
+          <div className="mt-4 grid overflow-hidden rounded-2xl border border-line bg-paper bg-grid-fine elev md:grid-cols-[auto_1fr]">
             {/* big step number */}
-            <div className="hidden items-center justify-center border-r border-line-strong/15 px-12 md:flex">
+            <div className="hidden items-center justify-center border-r border-line px-12 md:flex">
                 <motion.span
                   key={STEPS[active].no}
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -72,7 +72,7 @@ export default function Process() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.35 }}
                 >
-                  <span className="hazard-red inline-block h-5 w-16" />
+                  <span className="accent-bar inline-block h-1.5 w-16 rounded-full" />
                   <h3 className="mt-5 font-display text-3xl font-extrabold uppercase text-ink md:text-5xl">
                     {STEPS[active].title}
                   </h3>

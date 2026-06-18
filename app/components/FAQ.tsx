@@ -42,15 +42,15 @@ export default function FAQ() {
           <SectionHead index="07" kicker="Questions" title="Frequently Asked" sub="Straight answers" />
         </Reveal>
 
-        <div className="mt-12 border-t border-line-strong/15">
+        <div className="mt-12 space-y-3">
           {FAQS.map((f, i) => {
             const on = open === i;
             return (
               <Reveal key={f.q} delay={Math.min(i, 3) * 0.05}>
-                <div className="border-b border-line-strong/15">
+                <div className={`overflow-hidden rounded-xl border bg-surface px-5 transition-all ${on ? "border-line-strong/30 elev" : "border-line hover:border-line-strong/25"}`}>
                   <button
                     onClick={() => setOpen(on ? null : i)}
-                    className="group flex w-full items-center gap-5 py-6 text-left"
+                    className="group flex w-full items-center gap-5 py-5 text-left"
                   >
                     <span className={`font-mono-tech text-sm ${on ? "text-red" : "text-mute"}`}>
                       {String(i + 1).padStart(2, "0")}
@@ -58,7 +58,7 @@ export default function FAQ() {
                     <span className={`flex-1 font-display text-lg font-bold transition-colors md:text-xl ${on ? "text-red" : "text-ink group-hover:text-red"}`}>
                       {f.q}
                     </span>
-                    <span className={`grid h-8 w-8 shrink-0 place-items-center border transition-all ${on ? "rotate-45 border-red bg-red text-white" : "border-line-strong/25 text-ink group-hover:border-ink"}`} aria-hidden>
+                    <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg border transition-all ${on ? "rotate-45 border-red bg-red text-white" : "border-line-strong/25 text-ink group-hover:border-ink"}`} aria-hidden>
                       +
                     </span>
                   </button>

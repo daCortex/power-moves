@@ -70,7 +70,7 @@ export default function Nav() {
       >
         <nav className="mx-auto flex h-16 max-w-[88rem] items-center justify-between px-5 md:px-6">
           <a href="#top" className="group flex items-center gap-3">
-            <span className="relative grid h-10 w-10 place-items-center bg-red text-white">
+            <span className="relative grid h-10 w-10 place-items-center rounded-xl bg-red text-white shadow-sm">
               <Bolt className="h-5 w-5" />
             </span>
             <span className="leading-none">
@@ -100,15 +100,15 @@ export default function Nav() {
           <div className="flex items-center gap-3">
             <a
               href="#contact"
-              className="hidden items-center gap-2 bg-ink px-5 py-3 tech-label text-paper transition-all hover:bg-red sm:inline-flex"
+              className="group hidden items-center gap-2 rounded-full bg-ink px-5 py-3 tech-label text-paper transition-all hover:bg-red hover:shadow-md sm:inline-flex"
             >
               Request a Quote
-              <span aria-hidden>→</span>
+              <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
             </a>
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
-              className="grid h-11 w-11 place-items-center border border-line-strong/20 bg-surface text-ink xl:hidden"
+              className="grid h-11 w-11 place-items-center rounded-xl border border-line-strong/20 bg-surface text-ink xl:hidden"
             >
               <div className="space-y-1.5">
                 <span className={`block h-0.5 w-5 bg-current transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />

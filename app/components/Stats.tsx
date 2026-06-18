@@ -12,9 +12,9 @@ const STATS = [
 
 export default function Stats() {
   return (
-    <section className="border-b border-line-strong/15 bg-ink">
-      <div className="mx-auto max-w-[88rem] px-6 py-16 md:py-20">
-        <div className="grid grid-cols-2 gap-px border border-paper/15 bg-paper/15 md:grid-cols-4">
+    <section className="bg-paper">
+      <div className="mx-auto max-w-[82rem] px-6 py-6">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4 elev-lg">
           {STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08} className="bg-ink">
               <div className="group relative px-6 py-9 transition-colors hover:bg-graphite/30">

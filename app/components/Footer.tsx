@@ -36,7 +36,7 @@ export default function Footer() {
             </p>
             <a
               href="mailto:commercial.agh@agholding.com"
-              className="group mt-8 inline-flex items-center gap-3 bg-ink px-7 py-4 tech-label text-paper transition-colors hover:bg-red"
+              className="group mt-8 inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md"
             >
               Request a Quote
               <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
@@ -44,8 +44,8 @@ export default function Footer() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="grid gap-px border border-line-strong/15 bg-line-strong/15 sm:grid-cols-2">
-              <div className="bg-surface p-6">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl border border-line bg-surface p-6">
                 <div className="tech-label text-steel">Call</div>
                 <div className="mt-2 space-y-1 font-mono-tech text-sm text-ink">
                   <div>09-5506709</div>
@@ -53,14 +53,14 @@ export default function Footer() {
                   <div>09-425751831</div>
                 </div>
               </div>
-              <div className="bg-surface p-6">
+              <div className="rounded-xl border border-line bg-surface p-6">
                 <div className="tech-label text-steel">Email</div>
                 <div className="mt-2 space-y-1 break-all font-mono-tech text-xs text-ink">
                   <div>commercial.agh@agholding.com</div>
                   <div>showroom.sales.agh@agholding.com</div>
                 </div>
               </div>
-              <div className="bg-surface p-6 sm:col-span-2">
+              <div className="rounded-xl border border-line bg-surface p-6 sm:col-span-2">
                 <div className="tech-label text-steel">Showroom · Yangon</div>
                 <div className="mt-2 text-sm leading-relaxed text-ink">
                   No. 501/503, Pyay Road (Corner of Pyi Yeik Thar Street),
@@ -73,11 +73,11 @@ export default function Footer() {
       </div>
 
       {/* link columns */}
-      <div className="border-t border-line-strong/15">
+      <div className="border-t border-line">
         <div className="mx-auto grid max-w-[88rem] gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <a href="#top" className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center bg-red text-white">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-red text-white shadow-sm">
                 <Bolt className="h-5 w-5" />
               </span>
               <span className="font-display text-lg font-extrabold uppercase tracking-tight text-ink">
@@ -109,14 +109,10 @@ export default function Footer() {
       </div>
 
       {/* bottom bar */}
-      <div className="hazard h-2.5 w-full" />
       <div className="bg-ink">
         <div className="mx-auto flex max-w-[88rem] flex-col items-center justify-between gap-3 px-6 py-6 tech-label text-paper/50 md:flex-row">
           <div>© 2026 Power Moves · Asia General Holding</div>
-          <div className="flex items-center gap-6">
-            <span>YANGON · MYANMAR</span>
-            <span className="hidden sm:inline">N 16.8° E 96.1°</span>
-          </div>
+          <span>Yangon · Myanmar</span>
         </div>
       </div>
     </footer>

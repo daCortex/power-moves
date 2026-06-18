@@ -25,12 +25,12 @@ export default function Standards() {
           <SectionHead index="06" kicker="Credentials" title="Standards & Trust" sub="Built to spec, by the book" />
         </Reveal>
 
-        <div className="mt-12 grid gap-px border border-line-strong/15 bg-line-strong/15 md:grid-cols-4">
+        <div className="mt-12 grid gap-4 md:grid-cols-4">
           {CERTS.map((c, i) => (
             <Reveal key={c.code} delay={i * 0.07}>
-              <div className="group flex h-full flex-col bg-surface p-7 transition-colors hover:bg-paper">
-                <div className="ticks relative flex h-20 w-20 items-center justify-center border-2 border-ink bg-paper">
-                  <span className="font-display text-2xl font-extrabold text-ink">{c.code}</span>
+              <div className="group flex h-full flex-col rounded-2xl border border-line bg-surface p-7 transition-all hover:-translate-y-1 hover:shadow-md hover:elev">
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl border-2 border-ink bg-paper transition-colors group-hover:bg-ink">
+                  <span className="font-display text-2xl font-extrabold text-ink transition-colors group-hover:text-paper">{c.code}</span>
                 </div>
                 <h3 className="mt-6 font-display text-lg font-bold text-ink">{c.title}</h3>
                 <p className="mt-2 text-sm text-steel">{c.note}</p>
@@ -42,8 +42,8 @@ export default function Standards() {
 
         {/* standards ticker strip */}
         <Reveal delay={0.2}>
-          <div className="mt-px flex flex-wrap items-center gap-x-8 gap-y-3 border border-line-strong/15 bg-ink px-6 py-5">
-            <span className="tech-label text-amber">REFERENCED STANDARDS //</span>
+          <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-3 rounded-2xl bg-ink px-6 py-5 elev">
+            <span className="tech-label text-amber">Referenced standards //</span>
             {STANDARDS.map((s) => (
               <span key={s} className="font-mono-tech text-xs text-paper/80">{s}</span>
             ))}
