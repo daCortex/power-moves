@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Archivo, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Sora, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,10 +8,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+// Display face — premium geometric grotesque (variable: full weight range)
+const sora = Sora({
+  variable: "--font-display-face",
   subsets: ["latin"],
-  weight: ["600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${archivo.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${sora.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper text-graphite">{children}</body>
     </html>
