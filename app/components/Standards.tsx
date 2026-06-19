@@ -22,7 +22,7 @@ export default function Standards() {
     <section id="standards" className="scroll-mt-28 border-b border-line-strong/15 bg-surface">
       <div className="mx-auto max-w-[88rem] px-6 py-20 md:py-28">
         <Reveal>
-          <SectionHead index="06" kicker="Credentials" title="Standards & Trust" sub="Built to spec, by the book" />
+          <SectionHead index="07" kicker="Credentials" title="Standards & Trust" sub="Built to spec, by the book" />
         </Reveal>
 
         <div className="mt-12 grid gap-4 md:grid-cols-4">

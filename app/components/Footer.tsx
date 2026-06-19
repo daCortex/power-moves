@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
           <Reveal>
             <div className="flex items-center gap-3 tech-label text-red">
-              <span className="font-mono-tech">[ 09 ]</span>
+              <span className="font-mono-tech">[ 10 ]</span>
               <span className="h-px w-8 bg-red" /> Get in touch
             </div>
             <h2 className="mt-5 max-w-xl heading-mega text-[clamp(1.75rem,4.5vw,3.25rem)] text-ink">

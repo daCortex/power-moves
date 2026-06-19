@@ -2,6 +2,7 @@ import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
 import Capabilities from "./components/Capabilities";
+import EpcPanel from "./components/EpcPanel";
 import Stats from "./components/Stats";
 import Products from "./components/Products";
 import Process from "./components/Process";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Marquee />
         <Capabilities />
+        <EpcPanel />
         <Stats />
         <Products />
         <Process />

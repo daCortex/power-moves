@@ -102,7 +102,7 @@ export default function Products() {
     <section id="products" className="scroll-mt-28 border-b border-line-strong/15 bg-paper">
       <div className="mx-auto max-w-[88rem] px-6 py-20 md:py-28">
         <Reveal>
-          <SectionHead index="03" kicker="Product range" title="Datasheet Explorer" sub="Tap a product · read the spec" />
+          <SectionHead index="04" kicker="Product range" title="Datasheet Explorer" sub="Tap a product · read the spec" />
         </Reveal>
 
         <Reveal delay={0.1}>
