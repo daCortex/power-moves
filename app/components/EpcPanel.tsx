@@ -130,7 +130,7 @@ export default function EpcPanel() {
 
               <button
                 onClick={() => setOpen((v) => !v)}
-                className="group mt-7 inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md"
+                className="group mt-7 inline-flex items-center gap-3 rounded-md bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md"
               >
                 <span className="relative grid h-5 w-5 place-items-center">
                   <span className="absolute h-0.5 w-3.5 bg-current" />

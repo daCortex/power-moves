@@ -160,7 +160,7 @@ export default function Products() {
 
                   <a
                     href="#contact"
-                    className="group mt-auto inline-flex items-center justify-center gap-3 rounded-full bg-red px-6 py-3.5 tech-label text-white transition-all hover:bg-ink hover:shadow-md"
+                    className="group mt-auto inline-flex items-center justify-center gap-3 rounded-md bg-red px-6 py-3.5 tech-label text-white transition-all hover:bg-ink hover:shadow-md"
                   >
                     Enquire about {p.code}
                     <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>

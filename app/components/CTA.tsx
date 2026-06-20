@@ -16,7 +16,7 @@ export default function CTA() {
         <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:items-end">
           <Reveal>
             <div className="flex items-center gap-3 tech-label text-amber">
-              <span className="font-mono-tech">[ 09 ]</span>
+              <span className="font-mono-tech">[ 10 ]</span>
               <span className="h-px w-8 bg-amber" />
               The Power Moves promise
             </div>
@@ -29,11 +29,11 @@ export default function CTA() {
               so what we quote is exactly what we deliver.
             </p>
             <motion.div whileHover={{ scale: 1.005 }} className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href="#contact" className="group inline-flex items-center justify-center gap-3 rounded-full bg-red px-8 py-4 tech-label text-white transition-all hover:bg-amber hover:text-ink hover:shadow-lg">
+              <a href="#contact" className="group inline-flex items-center justify-center gap-3 rounded-md bg-red px-8 py-4 tech-label text-white transition-all hover:bg-amber hover:text-ink hover:shadow-lg">
                 Start Your Project
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
               </a>
-              <a href="#products" className="inline-flex items-center justify-center gap-3 rounded-full border border-paper/25 px-8 py-4 tech-label text-paper transition-colors hover:border-paper">
+              <a href="#products" className="inline-flex items-center justify-center gap-3 rounded-md border border-paper/25 px-8 py-4 tech-label text-paper transition-colors hover:border-paper">
                 View Product Range
               </a>
             </motion.div>

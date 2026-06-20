@@ -39,7 +39,7 @@ export default function FAQ() {
     <section id="faq" className="scroll-mt-28 border-b border-line-strong/15 bg-paper">
       <div className="mx-auto max-w-[88rem] px-6 py-20 md:py-28">
         <Reveal>
-          <SectionHead index="08" kicker="Questions" title="Frequently Asked" sub="Straight answers" />
+          <SectionHead index="09" kicker="Questions" title="Frequently Asked" sub="Straight answers" />
         </Reveal>
 
         <div className="mt-12 space-y-3">

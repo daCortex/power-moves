@@ -5,6 +5,7 @@ import Capabilities from "./components/Capabilities";
 import EpcPanel from "./components/EpcPanel";
 import Stats from "./components/Stats";
 import Products from "./components/Products";
+import Specs from "./components/Specs";
 import Process from "./components/Process";
 import Industries from "./components/Industries";
 import Standards from "./components/Standards";
@@ -23,6 +24,7 @@ export default function Home() {
         <EpcPanel />
         <Stats />
         <Products />
+        <Specs />
         <Process />
         <Industries />
         <Standards />

@@ -101,7 +101,7 @@ export default function Nav() {
           <div className="flex items-center gap-3">
             <a
               href="#contact"
-              className="group hidden items-center gap-2 rounded-full bg-ink px-5 py-3 tech-label text-paper transition-all hover:bg-red hover:shadow-md sm:inline-flex"
+              className="group hidden items-center gap-2 rounded-md bg-ink px-5 py-3 tech-label text-paper transition-all hover:bg-red hover:shadow-md sm:inline-flex"
             >
               Request a Quote
               <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>

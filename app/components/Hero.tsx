@@ -83,14 +83,14 @@ export default function Hero() {
           >
             <a
               href="#contact"
-              className="group inline-flex items-center justify-center gap-3 rounded-full bg-red px-7 py-4 tech-label text-white transition-all hover:bg-ink hover:shadow-lg"
+              className="group inline-flex items-center justify-center gap-3 rounded-md bg-red px-7 py-4 tech-label text-white transition-all hover:bg-ink hover:shadow-lg"
             >
               Request a Quote
               <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
             </a>
             <a
               href="#capabilities"
-              className="group inline-flex items-center justify-center gap-3 rounded-full border border-line-strong/20 bg-surface px-7 py-4 tech-label text-ink transition-all hover:border-ink hover:shadow-md"
+              className="group inline-flex items-center justify-center gap-3 rounded-md border border-line-strong/20 bg-surface px-7 py-4 tech-label text-ink transition-all hover:border-ink hover:shadow-md"
             >
               View Capabilities
             </a>

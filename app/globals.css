@@ -41,6 +41,18 @@
   --font-mono: var(--font-mono-tech);
 }
 
+/* AG-Holding-clean: squarer, industrial corner radii (override Tailwind's
+   rounded-* scale site-wide). Literal values must live in a plain @theme
+   block (not @theme inline) to register as utilities. */
+@theme {
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.3125rem;
+  --radius-xl: 0.375rem;
+  --radius-2xl: 0.5rem;
+  --radius-3xl: 0.75rem;
+}
+
 * {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -114,8 +126,8 @@ body {
 }
 
 /* modern elevation */
-.elev { box-shadow: 0 1px 2px rgba(21,22,26,0.04), 0 8px 24px -12px rgba(21,22,26,0.14); }
-.elev-lg { box-shadow: 0 2px 4px rgba(21,22,26,0.05), 0 24px 60px -24px rgba(21,22,26,0.22); }
+.elev { box-shadow: 0 1px 1px rgba(21,22,26,0.03), 0 4px 12px -8px rgba(21,22,26,0.12); }
+.elev-lg { box-shadow: 0 1px 2px rgba(21,22,26,0.04), 0 12px 28px -16px rgba(21,22,26,0.16); }
 
 /* thin red accent rule (replaces hazard stripes for a cleaner look) */
 .accent-bar {

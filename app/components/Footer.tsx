@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
           <Reveal>
             <div className="flex items-center gap-3 tech-label text-red">
-              <span className="font-mono-tech">[ 10 ]</span>
+              <span className="font-mono-tech">[ 11 ]</span>
               <span className="h-px w-8 bg-red" /> Get in touch
             </div>
             <h2 className="mt-5 max-w-xl heading-mega text-[clamp(1.75rem,4.5vw,3.25rem)] text-ink">
@@ -36,7 +36,7 @@ export default function Footer() {
             </p>
             <a
               href="mailto:commercial.agh@agholding.com"
-              className="group mt-8 inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md"
+              className="group mt-8 inline-flex items-center gap-3 rounded-md bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md"
             >
               Request a Quote
               <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>

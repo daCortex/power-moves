@@ -42,7 +42,7 @@ export default function Industries() {
     <section id="industries" className="scroll-mt-28 border-b border-line-strong/15 bg-paper">
       <div className="mx-auto max-w-[88rem] px-6 py-20 md:py-28">
         <Reveal>
-          <SectionHead index="06" kicker="Where we work" title="Industries Served" sub="Power that can't fail" />
+          <SectionHead index="07" kicker="Where we work" title="Industries Served" sub="Power that can't fail" />
         </Reveal>
 
         <div className="mt-12 grid items-stretch gap-4 lg:grid-cols-2">

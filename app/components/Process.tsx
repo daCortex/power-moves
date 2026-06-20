@@ -20,7 +20,7 @@ export default function Process() {
     <section id="process" className="scroll-mt-28 border-b border-line-strong/15 bg-surface">
       <div className="mx-auto max-w-[88rem] px-6 py-20 md:py-28">
         <Reveal>
-          <SectionHead index="05" kicker="How we work" title="From Brief to Power" sub="Five stages · one partner" />
+          <SectionHead index="06" kicker="How we work" title="From Brief to Power" sub="Five stages · one partner" />
         </Reveal>
 
         {/* progress rail */}
