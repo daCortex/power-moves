@@ -16,18 +16,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Power Moves — Electrical Engineering, Supply & EPC Turnkey Solutions",
+  title: "Power Moves — High-Voltage Transformers & ABB-Licensed Switchgear",
   description:
-    "Power Moves engineers, supplies and delivers the electrical backbone of modern industry — transformers, switchgear, substations and full EPC turnkey power systems. Licensed ABB supplier, ISO-certified.",
+    "Power Moves manufactures power transformers up to 230 kV / 150 MVA and ABB-licensed switchgear — type-tested by DEKRA, KERI and Tecnalia, built and supported from Yangon.",
   keywords: [
-    "electrical engineering",
-    "EPC turnkey",
-    "switchgear",
-    "transformers",
+    "power transformers",
+    "230 kV transformer",
+    "ABB switchgear",
+    "DEKRA type test",
     "substations",
-    "power distribution",
-    "industrial power",
-    "ABB supplier",
+    "EPC turnkey",
+    "Yangon",
+    "Asia General Holding",
   ],
 };
 
