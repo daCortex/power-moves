@@ -1,24 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Sora, IBM_Plex_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+// Premium, modern type system — Geist (UI + display) + Geist Mono (technical).
+const geist = Geist({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Display face — premium geometric grotesque (variable: full weight range)
-const sora = Sora({
-  variable: "--font-display-face",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
+const geistMono = Geist_Mono({
   variable: "--font-mono-tech",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -46,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${sora.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${geist.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-paper text-graphite">{children}</body>
     </html>

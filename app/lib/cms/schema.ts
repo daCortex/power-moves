@@ -64,24 +64,26 @@ export const defaultContent: SiteContent = {
   },
   nav: {
     groups: [
-      { label: "Solutions", items: [
-        { label: "Capabilities", href: "/#capabilities", desc: "What we do, end to end" },
-        { label: "Inside an EPC panel", href: "/#anatomy", desc: "The 3D anatomy" },
-        { label: "Process", href: "/process", desc: "From brief to power" },
+      { label: "About", items: [
+        { label: "Overview", href: "/about", desc: "The key to smart power" },
+        { label: "MD Message", href: "/about#md", desc: "From our Managing Director" },
+        { label: "Corporate Governance", href: "/about#governance", desc: "How we operate" },
+        { label: "Location & Address", href: "/contact", desc: "Find & reach us" },
       ] },
       { label: "Products", items: [
-        { label: "Product range", href: "/#products", desc: "Datasheet explorer" },
-        { label: "Specifications", href: "/specifications", desc: "Built to standard" },
-        { label: "Industries", href: "/industries", desc: "Where we work" },
-      ] },
-      { label: "Company", items: [
-        { label: "Standards & trust", href: "/specifications#standards", desc: "DEKRA · KERI · ABB · ISO" },
-        { label: "FAQ", href: "/faq", desc: "Straight answers" },
-        { label: "Contact", href: "/#contact", desc: "Get in touch" },
+        { label: "Power Transformers", href: "/products#transformer", desc: "Up to 230 kV / 150 MVA" },
+        { label: "Panels & Switchgear", href: "/products#panel", desc: "ABB-licensed, up to 40.5 kV" },
+        { label: "Components", href: "/products#ancillary", desc: "Ancillary apparatus" },
+        { label: "All products", href: "/products", desc: "Full catalog" },
       ] },
     ],
-    flat: [],
-    cta: { label: "Request a Quote", href: "/#contact" },
+    flat: [
+      { label: "Downloads", href: "/downloads", desc: "" },
+      { label: "News", href: "/news", desc: "" },
+      { label: "Support", href: "/support", desc: "" },
+      { label: "Careers", href: "/careers", desc: "" },
+    ],
+    cta: { label: "Request a Quote", href: "/contact" },
   },
   hero: {
     eyebrow: "High-Voltage Transformers · ABB-Licensed Switchgear",
@@ -196,9 +198,9 @@ export const defaultContent: SiteContent = {
   footer: {
     blurb: "High-voltage power transformers and ABB-licensed switchgear, manufactured and supported in Yangon.",
     columns: [
-      { title: "Solutions", links: [{ label: "Transformers", href: "/#capabilities" }, { label: "Panels & Switchgear", href: "/#capabilities" }, { label: "EPC & Substations", href: "/#capabilities" }, { label: "After-Sales", href: "/#capabilities" }] },
-      { title: "Products", links: [{ label: "Power Transformers", href: "/#products" }, { label: "MV Switchgear", href: "/#products" }, { label: "LV Switchgear", href: "/#products" }, { label: "Package Substations", href: "/#products" }] },
-      { title: "Company", links: [{ label: "Process", href: "/process" }, { label: "Industries", href: "/industries" }, { label: "Standards", href: "/specifications#standards" }, { label: "FAQ", href: "/faq" }] },
+      { title: "Products", links: [{ label: "Power Transformers", href: "/products#transformer" }, { label: "Panels & Switchgear", href: "/products#panel" }, { label: "Components", href: "/products#ancillary" }, { label: "Downloads", href: "/downloads" }] },
+      { title: "Company", links: [{ label: "About", href: "/about" }, { label: "News", href: "/news" }, { label: "Careers", href: "/careers" }, { label: "Support", href: "/support" }] },
+      { title: "Contact", links: [{ label: "Contact us", href: "/contact" }, { label: "Request a Quote", href: "/contact" }, { label: "Showroom visit", href: "/contact" }, { label: "Specifications", href: "/downloads" }] },
     ],
     copyright: "© 2026 Power Moves · Asia General Holding",
     location: "Yangon · Myanmar",
