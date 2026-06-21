@@ -1,105 +1,73 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { defaultContent, type SiteContent } from "@/app/lib/cms/schema";
 
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } };
-const word = { hidden: { opacity: 0, y: "115%" }, show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as const } } };
+const HOLD = 5000;
 
 export default function Hero({ data }: { data?: SiteContent["hero"] }) {
   const d = data ?? defaultContent.hero;
-  const lines = d.titleLines.map((l) => l.split(" "));
+  const slides = d.slides.length ? d.slides : defaultContent.hero.slides;
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setActive((a) => (a + 1) % slides.length), HOLD);
+    return () => clearInterval(id);
+  }, [slides.length]);
 
   return (
-    <section id="top" className="relative overflow-hidden bg-soft pt-28 md:pt-32">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-grid bg-grid-fade" />
+    <section id="top" className="relative isolate flex min-h-[88vh] items-center overflow-hidden pt-16">
+      {/* full-bleed photography */}
+      <div className="absolute inset-0 -z-10 bg-ink">
+        {slides.map((s, i) => (
+          <div key={s.src} className="absolute inset-0 transition-opacity duration-[1200ms] ease-out" style={{ opacity: i === active ? 1 : 0 }} aria-hidden={i !== active}>
+            <Image src={s.src} alt={s.alt} fill priority={i === 0} sizes="100vw" className="object-cover" style={{ transform: i === active ? "scale(1)" : "scale(1.06)", transition: "transform 6s ease-out" }} />
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
       </div>
 
-      <div className="relative mx-auto grid max-w-[82rem] gap-12 px-6 pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:pb-28">
-        <div>
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}
-            className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/70 py-2 pl-2.5 pr-4 backdrop-blur elev">
-            <span className="h-2 w-2 rounded-full bg-red" />
-            <span className="tech-label text-ink">{d.eyebrow}</span>
-          </motion.div>
+      <div className="mx-auto w-full max-w-[88rem] px-6 py-16">
+        <div className="max-w-2xl rounded-xl border border-white/40 bg-white/75 p-7 shadow-[0_20px_60px_-25px_rgba(14,17,22,0.5)] backdrop-blur-md sm:p-10">
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-3 py-1.5 tech-label text-graphite">
+            <span className="h-1.5 w-1.5 rounded-full bg-red" />{d.eyebrow}
+          </p>
+          <h1 className="max-w-[18ch] font-display text-4xl font-bold leading-[1.04] tracking-tight text-ink sm:text-5xl lg:text-6xl">{d.title}</h1>
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-graphite">{d.sub}</p>
 
-          <motion.h1 variants={container} initial="hidden" animate="show" className="heading-mega text-[clamp(2.75rem,8vw,6.5rem)] text-ink">
-            {lines.map((words, li) => (
-              <span key={li} className="block overflow-hidden">
-                {words.map((w, i) => (
-                  <span key={i} className="mr-[0.2em] inline-block overflow-hidden align-top">
-                    <motion.span variants={word} className={`inline-block ${w === d.redWord ? "text-red" : ""}`}>{w}</motion.span>
-                  </span>
-                ))}
-              </span>
-            ))}
-          </motion.h1>
-
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-graphite">{d.sub}</motion.p>
-
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.72 }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-wrap gap-3">
             {d.ctas.map((c, i) => (
               <a key={i} href={c.href}
                 className={i === 0
-                  ? "group inline-flex items-center justify-center gap-3 rounded-md bg-red px-7 py-4 tech-label text-white transition-all hover:bg-ink hover:shadow-lg"
-                  : "group inline-flex items-center justify-center gap-3 rounded-md border border-line-strong/20 bg-surface px-7 py-4 tech-label text-ink transition-all hover:border-ink hover:shadow-md"}>
-                {c.label}
-                {i === 0 && <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>}
+                  ? "group inline-flex items-center gap-2 rounded-md bg-red px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-red-deep"
+                  : "inline-flex items-center gap-2 rounded-md border border-line-strong/25 bg-white/60 px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-ink"}>
+                {c.label}{i === 0 && <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>}
               </a>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.dl initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-12 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
-            {d.keyspecs.map((s) => (
-              <div key={s.l} className="rounded-xl border border-line bg-surface/70 px-4 py-4 backdrop-blur transition-shadow hover:elev">
-                <dd className="font-display text-3xl font-extrabold text-ink">{s.k}<span className="text-red">{s.u}</span></dd>
+          <dl className="mt-9 grid max-w-lg grid-cols-3 divide-x divide-line border-t border-line pt-5">
+            {d.stats.map((s) => (
+              <div key={s.l} className="px-3 first:pl-0">
+                <dd className="font-display text-2xl font-bold text-ink">{s.v}<span className="text-red">{s.suffix}</span></dd>
                 <dt className="mt-1 tech-label text-steel">{s.l}</dt>
               </div>
             ))}
-          </motion.dl>
+          </dl>
         </div>
+      </div>
 
-        {/* system panel (visual, static) */}
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }} className="relative">
-          <div className="relative overflow-hidden rounded-2xl border border-line bg-surface p-5 elev-lg">
-            <div className="flex items-center justify-between border-b border-line pb-3">
-              <span className="tech-label text-ink">System Panel</span>
-              <span className="flex items-center gap-2 tech-label text-steel"><span className="h-2 w-2 rounded-full bg-red animate-blink" /> LIVE</span>
-            </div>
-            <div className="relative mt-4 aspect-[4/3] w-full overflow-hidden rounded-xl bg-paper bg-grid-fine">
-              <svg viewBox="0 0 320 240" className="h-full w-full" fill="none" aria-hidden>
-                <g stroke="#15161a" strokeOpacity="0.3" strokeWidth="1.5">
-                  <path d="M30 40h90v60h170" /><path d="M30 120h60v80h200" /><path d="M280 40v160" />
-                  <rect x="110" y="86" width="28" height="28" rx="4" fill="#fff" /><rect x="80" y="186" width="28" height="28" rx="4" fill="#fff" /><rect x="266" y="86" width="28" height="28" rx="4" fill="#fff" />
-                </g>
-                <path d="M30 40h90v60h170v100" stroke="#d81e26" strokeWidth="2.5" strokeDasharray="10 8" className="animate-dash" />
-                {[[30,40],[120,40],[280,40],[124,100],[280,200],[90,120],[90,200]].map(([x,y],i)=>(<circle key={i} cx={x} cy={y} r="4" fill="#fff" stroke="#15161a" strokeWidth="2" />))}
-                <circle cx="280" cy="100" r="7" fill="none" stroke="#d81e26" strokeWidth="2" className="animate-blink" />
-              </svg>
-              <span className="absolute left-3 top-2 tech-label text-mute">DIST-01</span>
-            </div>
-            <div className="mt-4 grid grid-cols-3 gap-3">
-              {[{ l: "VOLTAGE", v: "33.0", u: "kV" }, { l: "LOAD", v: "98.6", u: "%" }, { l: "UPTIME", v: "100", u: "%" }].map((r) => (
-                <div key={r.l} className="rounded-lg border border-line bg-paper px-3 py-3">
-                  <div className="tech-label text-steel">{r.l}</div>
-                  <div className="font-mono-tech text-xl font-semibold text-ink">{r.v}<span className="text-sm text-red">{r.u}</span></div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 flex items-center justify-between rounded-lg bg-ink px-4 py-3">
-              <span className="tech-label text-paper/70">Rating plate</span>
-              <span className="font-mono-tech text-sm text-paper">PM-SWGR-33/AB</span>
-            </div>
-          </div>
-          <div className="absolute -bottom-5 -left-5 hidden items-center gap-3 rounded-xl border border-line bg-surface px-4 py-3 elev sm:flex">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-ink font-display text-sm font-extrabold text-paper">AB</span>
-            <span className="tech-label text-ink/80">Licensed<br />ABB Supplier</span>
-          </div>
-        </motion.div>
+      {/* caption + dots */}
+      <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-4 sm:left-auto sm:right-8 sm:translate-x-0">
+        <span className="hidden font-mono-tech text-[0.66rem] uppercase tracking-[0.16em] text-white/90 [text-shadow:0_1px_4px_rgb(0_0_0/0.5)] sm:inline">{slides[active].caption}</span>
+        <div className="flex items-center gap-2">
+          {slides.map((_, i) => (
+            <button key={i} aria-label={`Slide ${i + 1}`} onClick={() => setActive(i)}
+              className={`h-1.5 rounded-full transition-all ${i === active ? "w-8 bg-white" : "w-2.5 bg-white/50 hover:bg-white/80"}`} />
+          ))}
+        </div>
       </div>
     </section>
   );

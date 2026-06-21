@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
-/* ============ Power Moves — Industrial Light Design Tokens ============ */
+/* ============ Power Moves — Corporate Light Design Tokens ============ */
 :root {
-  --background: #edece7;
-  --foreground: #15161a;
+  --background: #ffffff;
+  --foreground: #0e1116;
 
-  --pm-paper: #edece7;      /* concrete base */
-  --pm-surface: #f8f7f4;    /* card */
-  --pm-surface-2: #e3e1da;  /* raised concrete */
-  --pm-ink: #15161a;        /* near-black, technical */
-  --pm-graphite: #3f434a;   /* primary steel text */
-  --pm-steel: #6c7178;      /* secondary text */
-  --pm-mute: #9a9b95;       /* faint labels */
-  --pm-line: #cfcdc4;       /* hairlines */
-  --pm-line-strong: #15161a;/* technical drawing rules */
-  --pm-red: #d81e26;        /* industrial signal red */
+  --pm-paper: #ffffff;      /* clean white substrate */
+  --pm-surface: #f4f6f8;    /* panel */
+  --pm-surface-2: #eceff3;  /* raised panel */
+  --pm-ink: #0e1116;        /* deep graphite ink */
+  --pm-graphite: #3a424d;   /* primary body text */
+  --pm-steel: #6b7480;      /* secondary text */
+  --pm-mute: #97a0ab;       /* faint labels */
+  --pm-line: #e3e7ec;       /* hairlines */
+  --pm-line-strong: #0e1116;/* strong rules */
+  --pm-red: #d81e26;        /* signal red (primary accent) */
   --pm-red-deep: #a3151b;
-  --pm-amber: #f4a400;      /* safety amber */
+  --pm-amber: #0a5f8a;      /* institutional blue (secondary accent) */
   --pm-white: #ffffff;
 }
 
@@ -37,7 +37,7 @@
   --color-amber: var(--pm-amber);
 
   --font-sans: var(--font-inter);
-  --font-display: var(--font-display-face);
+  --font-display: var(--font-inter);
   --font-mono: var(--font-mono-tech);
 }
 
@@ -80,10 +80,9 @@ body {
 
 .heading-mega {
   font-family: var(--font-display), Arial, sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.92;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.02;
 }
 
 .tech-label {
