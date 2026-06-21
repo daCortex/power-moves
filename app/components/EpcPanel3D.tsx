@@ -22,8 +22,7 @@ const AMBER = "#f4a400";
 const COPPER = "#c06a2c";
 
 const TONE = [RED, INK, LIGHT, INK, LIGHT, INK];
-const N = 6;
-const MID = (N - 1) / 2;
+const MAX = 6;
 const SLAB: [number, number, number] = [3, 0.2, 2]; // w, h, d
 const CLOSED_GAP = 0.24;
 const OPEN_GAP = 0.95;
@@ -132,22 +131,24 @@ function Contents({ i }: { i: number }) {
 
 function Layer({
   i,
+  mid,
   open,
   selected,
   onSelect,
 }: {
   i: number;
+  mid: number;
   open: boolean;
   selected: boolean;
   onSelect: (i: number) => void;
 }) {
   const ref = useRef<Group>(null);
-  const color = TONE[i];
+  const color = TONE[i % TONE.length];
 
   useFrame(() => {
     const g = ref.current;
     if (!g) return;
-    const targetY = (MID - i) * (open ? OPEN_GAP : CLOSED_GAP);
+    const targetY = (mid - i) * (open ? OPEN_GAP : CLOSED_GAP);
     const targetX = open && selected ? 0.7 : 0;
     const targetS = selected ? 1.05 : 1;
     g.position.y = lerp(g.position.y, targetY, 0.1);
@@ -184,11 +185,14 @@ function Scene({
   open,
   selected,
   onSelect,
+  n,
 }: {
   open: boolean;
   selected: number;
   onSelect: (i: number) => void;
+  n: number;
 }) {
+  const mid = (n - 1) / 2;
   return (
     <>
       <ambientLight intensity={0.25} />
@@ -212,8 +216,8 @@ function Scene({
       </Environment>
 
       <group position={[0, 0.2, 0]}>
-        {Array.from({ length: N }).map((_, i) => (
-          <Layer key={i} i={i} open={open} selected={selected === i} onSelect={onSelect} />
+        {Array.from({ length: n }).map((_, i) => (
+          <Layer key={i} i={i} mid={mid} open={open} selected={selected === i} onSelect={onSelect} />
         ))}
       </group>
 
@@ -243,11 +247,14 @@ export default function EpcPanel3D({
   open,
   selected,
   onSelect,
+  count = MAX,
 }: {
   open: boolean;
   selected: number;
   onSelect: (i: number) => void;
+  count?: number;
 }) {
+  const n = Math.max(1, Math.min(count, MAX));
   return (
     <Canvas
       shadows
@@ -257,7 +264,7 @@ export default function EpcPanel3D({
       style={{ background: "transparent" }}
     >
       <Suspense fallback={null}>
-        <Scene open={open} selected={selected} onSelect={onSelect} />
+        <Scene open={open} selected={selected} onSelect={onSelect} n={n} />
       </Suspense>
     </Canvas>
   );

@@ -2,31 +2,17 @@
 
 import Reveal from "./Reveal";
 import { SectionHead } from "./Capabilities";
+import { defaultContent, type SiteContent } from "@/app/lib/cms/schema";
 
-const CERTS = [
-  { code: "ABB", title: "Licensed Switchgear Supplier", note: "Genuine, warranted equipment" },
-  { code: "ISO", title: "ISO-Certified Operations", note: "Quality management system" },
-  { code: "IEC", title: "IEC-Compliant Engineering", note: "60076 · 61439 · 62271" },
-  { code: "AGH", title: "Asia General Holding Group", note: "Backed manufacturing strength" },
-];
-
-const STANDARDS = [
-  "IEC 60076 — Power Transformers",
-  "IEC 62271 — HV Switchgear",
-  "IEC 61439 — LV Assemblies",
-  "IEC 62271-202 — Package Substations",
-];
-
-export default function Standards() {
+export default function Standards({ data }: { data?: SiteContent["standards"] }) {
+  const d = data ?? defaultContent.standards;
   return (
-    <section id="standards" className="scroll-mt-28 border-b border-line-strong/15 bg-surface">
+    <section id="standards" className="scroll-mt-28 border-b border-line bg-surface">
       <div className="mx-auto max-w-[88rem] px-6 py-20 md:py-28">
-        <Reveal>
-          <SectionHead index="08" kicker="Credentials" title="Standards & Trust" sub="Built to spec, by the book" />
-        </Reveal>
+        <Reveal><SectionHead index={d.index} kicker={d.kicker} title={d.title} sub={d.sub} /></Reveal>
 
         <div className="mt-12 grid gap-4 md:grid-cols-4">
-          {CERTS.map((c, i) => (
+          {d.certs.map((c, i) => (
             <Reveal key={c.code} delay={i * 0.07}>
               <div className="group flex h-full flex-col rounded-2xl border border-line bg-surface p-7 transition-all hover:-translate-y-1 hover:shadow-md hover:elev">
                 <div className="flex h-20 w-20 items-center justify-center rounded-2xl border-2 border-ink bg-paper transition-colors group-hover:bg-ink">
@@ -40,13 +26,10 @@ export default function Standards() {
           ))}
         </div>
 
-        {/* standards ticker strip */}
         <Reveal delay={0.2}>
           <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-3 rounded-2xl bg-ink px-6 py-5 elev">
             <span className="tech-label text-amber">Referenced standards //</span>
-            {STANDARDS.map((s) => (
-              <span key={s} className="font-mono-tech text-xs text-paper/80">{s}</span>
-            ))}
+            {d.standards.map((s) => (<span key={s} className="font-mono-tech text-xs text-paper/80">{s}</span>))}
           </div>
         </Reveal>
       </div>

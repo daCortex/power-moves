@@ -1,28 +1,17 @@
 "use client";
 
-const ITEMS = [
-  "Licensed ABB Switchgear Supplier",
-  "ISO-Certified Operations",
-  "Power Transformer Manufacturing",
-  "EPC Turnkey Engineering",
-  "Medium-Voltage up to 33 kV",
-  "Substation & Distribution Support",
-  "Procurement-Ready Supply",
-];
+import { defaultContent } from "@/app/lib/cms/schema";
 
-export default function Marquee() {
+export default function Marquee({ items }: { items?: string[] }) {
+  const list = items && items.length ? items : defaultContent.marquee;
   return (
-    <div className="relative overflow-hidden border-b border-line-strong/15 bg-ink py-4">
+    <div className="relative overflow-hidden border-b border-line bg-ink py-4">
       <div className="flex w-max animate-marquee">
         {[0, 1].map((dup) => (
           <ul key={dup} className="flex shrink-0 items-center" aria-hidden={dup === 1}>
-            {ITEMS.map((item) => (
-              <li
-                key={item}
-                className="flex items-center gap-5 whitespace-nowrap px-7 tech-label text-paper/80"
-              >
-                <span className="text-amber">◆</span>
-                {item}
+            {list.map((item) => (
+              <li key={item} className="flex items-center gap-5 whitespace-nowrap px-7 tech-label text-paper/80">
+                <span className="text-amber">◆</span>{item}
               </li>
             ))}
           </ul>

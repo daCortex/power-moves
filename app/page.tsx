@@ -3,35 +3,28 @@ import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
 import Capabilities from "./components/Capabilities";
 import EpcPanel from "./components/EpcPanel";
-import Stats from "./components/Stats";
 import Products from "./components/Products";
-import Specs from "./components/Specs";
-import Process from "./components/Process";
-import Industries from "./components/Industries";
-import Standards from "./components/Standards";
-import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
+import { getContent } from "./lib/cms/store";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const c = await getContent();
   return (
     <>
-      <Nav />
+      <Nav nav={c.nav} brand={c.brand} />
       <main>
-        <Hero />
-        <Marquee />
-        <Capabilities />
-        <EpcPanel />
-        <Stats />
-        <Products />
-        <Specs />
-        <Process />
-        <Industries />
-        <Standards />
-        <FAQ />
-        <CTA />
+        {/* Home: 5 sections — Hero · Capabilities · EPC Anatomy · Products · CTA */}
+        <Hero data={c.hero} />
+        <Marquee items={c.marquee} />
+        <Capabilities data={c.capabilities} />
+        <EpcPanel data={c.epc} />
+        <Products data={c.products} />
+        <CTA data={c.cta} />
       </main>
-      <Footer />
+      <Footer footer={c.footer} contact={c.contact} brand={c.brand} />
     </>
   );
 }
