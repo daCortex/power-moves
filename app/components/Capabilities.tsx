@@ -77,14 +77,14 @@ export default function Capabilities({ data }: { data?: SiteContent["capabilitie
   );
 }
 
-export function SectionHead({ index, kicker, title, sub }: { index: string; kicker: string; title: string; sub?: string }) {
+export function SectionHead({ kicker, title, sub }: { index?: string; kicker: string; title: string; sub?: string }) {
   return (
-    <div className="flex flex-col gap-4 border-b border-line pb-6 md:flex-row md:items-end md:justify-between">
+    <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <div className="flex items-center gap-3 tech-label text-red">
-          <span className="font-mono-tech">[ {index} ]</span><span className="h-px w-8 bg-red" />{kicker}
+        <div className="flex items-center gap-2.5 tech-label text-red">
+          <span className="h-px w-7 bg-red" />{kicker}
         </div>
-        <h2 className="mt-3 heading-mega text-[clamp(2rem,5vw,3.5rem)] text-ink">{title}</h2>
+        <h2 className="mt-4 heading-mega text-[clamp(2rem,5vw,3.5rem)] text-ink">{title}</h2>
       </div>
       {sub && <div className="tech-label text-steel">{sub}</div>}
     </div>

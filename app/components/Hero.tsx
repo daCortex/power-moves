@@ -45,7 +45,7 @@ export default function Hero({ data }: { data?: SiteContent["hero"] }) {
               <a key={i} href={c.href}
                 className={i === 0
                   ? "group inline-flex items-center justify-center gap-3 rounded-md bg-red px-7 py-4 tech-label text-white transition-all hover:bg-ink hover:shadow-lg"
-                  : "group inline-flex items-center justify-center gap-3 rounded-md border border-line-strong/20 bg-surface px-7 py-4 tech-label text-ink transition-all hover:border-ink hover:shadow-md"}>
+                  : "group inline-flex items-center justify-center gap-3 rounded-full border border-line-strong/20 bg-surface px-7 py-4 tech-label text-ink transition-all hover:border-ink hover:shadow-md"}>
                 {c.label}
                 {i === 0 && <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>}
               </a>
@@ -83,7 +83,7 @@ export default function Hero({ data }: { data?: SiteContent["hero"] }) {
               <span className="absolute left-3 top-2 tech-label text-mute">DIST-01</span>
             </div>
             <div className="mt-4 grid grid-cols-3 gap-3">
-              {[{ l: "VOLTAGE", v: "33.0", u: "kV" }, { l: "LOAD", v: "98.6", u: "%" }, { l: "UPTIME", v: "100", u: "%" }].map((r) => (
+              {[{ l: "VOLTAGE", v: "230", u: "kV" }, { l: "LOAD", v: "98.6", u: "%" }, { l: "UPTIME", v: "100", u: "%" }].map((r) => (
                 <div key={r.l} className="rounded-lg border border-line bg-paper px-3 py-3">
                   <div className="tech-label text-steel">{r.l}</div>
                   <div className="font-mono-tech text-xl font-semibold text-ink">{r.v}<span className="text-sm text-red">{r.u}</span></div>
@@ -92,7 +92,7 @@ export default function Hero({ data }: { data?: SiteContent["hero"] }) {
             </div>
             <div className="mt-4 flex items-center justify-between rounded-lg bg-ink px-4 py-3">
               <span className="tech-label text-paper/70">Rating plate</span>
-              <span className="font-mono-tech text-sm text-paper">PM-SWGR-33/AB</span>
+              <span className="font-mono-tech text-sm text-paper">PM-TX-230/AB</span>
             </div>
           </div>
           <div className="absolute -bottom-5 -left-5 hidden items-center gap-3 rounded-xl border border-line bg-surface px-4 py-3 elev sm:flex">
