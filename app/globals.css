@@ -1,3 +1,5 @@
+/* CJK + Myanmar glyph coverage (CDN-subsetted; Geist handles Latin) */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
 /* ============ Power Moves — Warm Premium Design Tokens ============ */
@@ -62,7 +64,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--pm-paper);
   color: var(--pm-graphite);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "Noto Sans SC", "Noto Sans Myanmar", ui-sans-serif, system-ui, sans-serif;
   overflow-x: hidden;
 }
 
@@ -74,18 +76,18 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--pm-red); }
 
 /* ============ Type utilities ============ */
-.font-display { font-family: var(--font-display), Arial, sans-serif; }
-.font-mono-tech { font-family: var(--font-mono), monospace; }
+.font-display { font-family: var(--font-display), "Noto Sans SC", "Noto Sans Myanmar", sans-serif; }
+.font-mono-tech { font-family: var(--font-mono), "Noto Sans SC", "Noto Sans Myanmar", monospace; }
 
 .heading-mega {
-  font-family: var(--font-display), Arial, sans-serif;
+  font-family: var(--font-display), "Noto Sans SC", "Noto Sans Myanmar", sans-serif;
   font-weight: 700;
   letter-spacing: -0.022em;
   line-height: 1.03;
 }
 
 .tech-label {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-mono), "Noto Sans SC", "Noto Sans Myanmar", monospace;
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { defaultContent, type SiteContent } from "@/app/lib/cms/schema";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 function Bolt({ className = "" }: { className?: string }) {
   return (
@@ -99,6 +100,7 @@ export default function Nav({ nav, brand }: { nav?: SiteContent["nav"]; brand?: 
           </div>
 
           <div className="flex items-center gap-3">
+            <LocaleSwitcher className="hidden md:inline-flex" />
             <a href={n.cta.href} className="hidden items-center gap-2 rounded-full bg-ink px-5 py-3 tech-label text-paper transition-all hover:bg-red sm:inline-flex">
               {n.cta.label}<span aria-hidden>→</span>
             </a>
@@ -136,6 +138,7 @@ export default function Nav({ nav, brand }: { nav?: SiteContent["nav"]; brand?: 
                 );
               })}
               <a href={n.cta.href} onClick={() => setOpen(false)} className="mt-3 inline-flex justify-center rounded-full bg-ink px-5 py-3 tech-label text-paper">{n.cta.label}</a>
+              <div className="mt-3"><LocaleSwitcher /></div>
             </div>
           </motion.div>
         )}

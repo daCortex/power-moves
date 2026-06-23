@@ -1,9 +1,10 @@
 import { sql, hasDb, ensureSchema } from "./db";
 import { defaultContent, type SiteContent } from "./schema";
 import { hashPassword, verifyPassword, type SessionUser } from "./auth";
+import { getLocale, deepMerge, overrides, type Locale } from "./locales";
 
 /* ---------- content ---------- */
-export async function getContent(): Promise<SiteContent> {
+async function getEnglishBase(): Promise<SiteContent> {
   if (!hasDb()) return defaultContent;
   try {
     await ensureSchema();
@@ -14,6 +15,15 @@ export async function getContent(): Promise<SiteContent> {
     console.error("[cms] getContent failed, using defaults:", e);
     return defaultContent;
   }
+}
+
+/** Locale-aware content. Defaults to the request's cookie locale; pass "en"
+ *  explicitly (e.g. the admin) to always get the editable English base. */
+export async function getContent(localeArg?: Locale): Promise<SiteContent> {
+  const base = await getEnglishBase();
+  const locale = localeArg ?? (await getLocale());
+  if (locale === "en") return base;
+  return deepMerge(base, overrides[locale]);
 }
 
 export async function saveContent(doc: SiteContent): Promise<void> {
