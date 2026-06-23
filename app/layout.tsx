@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ScrollProgress from "./components/ScrollProgress";
 
 // Premium, modern type system — Geist (UI + display) + Geist Mono (technical).
 const geist = Geist({
@@ -41,7 +42,11 @@ export default function RootLayout({
       lang="en"
       className={`${geist.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-paper text-graphite">{children}</body>
+      <body className="min-h-full bg-paper text-graphite">
+        <ScrollProgress />
+        <div className="grain-overlay" aria-hidden />
+        {children}
+      </body>
     </html>
   );
 }

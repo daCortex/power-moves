@@ -8,6 +8,7 @@ type CounterProps = {
   suffix?: string;
   prefix?: string;
   duration?: number;
+  decimals?: number;
 };
 
 export default function Counter({
@@ -15,6 +16,7 @@ export default function Counter({
   suffix = "",
   prefix = "",
   duration = 1800,
+  decimals = 0,
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -24,22 +26,22 @@ export default function Counter({
     if (!inView) return;
     let raf = 0;
     let start: number | null = null;
+    const f = Math.pow(10, decimals);
     const step = (t: number) => {
       if (start === null) start = t;
       const progress = Math.min((t - start) / duration, 1);
-      // easeOutExpo
       const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      setValue(Math.round(eased * to));
+      setValue(Math.round(eased * to * f) / f);
       if (progress < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [inView, to, duration]);
+  }, [inView, to, duration, decimals]);
 
   return (
     <span ref={ref}>
       {prefix}
-      {value}
+      {value.toFixed(decimals)}
       {suffix}
     </span>
   );

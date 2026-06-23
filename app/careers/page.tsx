@@ -34,7 +34,7 @@ export default async function CareersPage() {
                   </div>
                   <div className="flex items-center gap-4">
                     <span className="tech-label text-steel">{r.type}</span>
-                    <a href="/contact" className="rounded-md bg-ink px-4 py-2 tech-label text-paper transition-colors hover:bg-red">Apply</a>
+                    <a href="/contact" className="rounded-full bg-ink px-4 py-2 tech-label text-paper transition-colors hover:bg-red">Apply</a>
                   </div>
                 </div>
               ))}

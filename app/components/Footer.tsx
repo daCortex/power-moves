@@ -28,7 +28,7 @@ export default function Footer({
             </div>
             <h2 className="mt-5 max-w-xl heading-mega text-[clamp(1.75rem,4.5vw,3.25rem)] text-ink">Let&apos;s engineer your next power system</h2>
             <p className="mt-5 max-w-md text-graphite">Tell us what you&apos;re building — load, voltage, site and scope. We&apos;ll bring the equipment, the engineering and the delivery.</p>
-            <a href={`mailto:${c.emails[0] ?? ""}`} className="group mt-8 inline-flex items-center gap-3 rounded-md bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md">
+            <a href={`mailto:${c.emails[0] ?? ""}`} className="group mt-8 inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md">
               Request a Quote<span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
             </a>
           </Reveal>

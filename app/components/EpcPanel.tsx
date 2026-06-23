@@ -52,7 +52,7 @@ export default function EpcPanel({ data }: { data?: SiteContent["epc"] }) {
               <p className="max-w-md text-lg text-graphite">
                 {d.intro} {open ? "Drag the model to inspect it, and tap any layer for the detail." : "It pulls itself apart as you scroll."}
               </p>
-              <button onClick={() => setOpen((v) => !v)} className="group mt-7 inline-flex items-center gap-3 rounded-md bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md">
+              <button onClick={() => setOpen((v) => !v)} className="group mt-7 inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 tech-label text-paper transition-all hover:bg-red hover:shadow-md">
                 <span className="relative grid h-5 w-5 place-items-center">
                   <span className="absolute h-0.5 w-3.5 bg-current" />
                   <span className={`absolute h-0.5 w-3.5 bg-current transition-transform ${open ? "rotate-0" : "rotate-90"}`} />

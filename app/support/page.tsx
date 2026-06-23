@@ -47,7 +47,7 @@ export default async function SupportPage() {
               ))}
             </div>
             <div className="mt-10 flex flex-wrap gap-3">
-              <a href={`tel:${c.contact.phones[0] ?? ""}`} className="rounded-md bg-ink px-6 py-3.5 text-sm font-semibold text-paper transition-colors hover:bg-red">Call the desk · {c.contact.phones[0]}</a>
+              <a href={`tel:${c.contact.phones[0] ?? ""}`} className="rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-paper transition-colors hover:bg-red">Call the desk · {c.contact.phones[0]}</a>
               <a href="/contact" className="rounded-full border border-line-strong/25 px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-ink">Contact form →</a>
             </div>
           </div>

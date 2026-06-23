@@ -31,7 +31,7 @@ export default function ContactForm({ to }: { to: string }) {
         </label>
       </div>
       <label className="mt-4 block"><span className="mb-1 block tech-label text-steel">Your message</span><textarea name="message" rows={4} className={`${field} resize-y`} /></label>
-      <button className="mt-5 rounded-md bg-red px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink">Send message</button>
+      <button className="mt-5 rounded-full bg-red px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink">Send message</button>
       {sent && <p className="mt-3 text-sm text-graphite">Opening your email app… if nothing happens, write to <span className="font-semibold text-ink">{to}</span>.</p>}
     </form>
   );

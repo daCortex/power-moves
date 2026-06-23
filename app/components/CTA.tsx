@@ -28,7 +28,7 @@ export default function CTA({ data }: { data?: SiteContent["cta"] }) {
                 {d.ctas.map((c, i) => (
                   <a key={i} href={c.href}
                     className={i === 0
-                      ? "group inline-flex items-center justify-center gap-3 rounded-md bg-red px-8 py-4 tech-label text-white transition-all hover:bg-amber hover:text-ink hover:shadow-lg"
+                      ? "btn-shine group inline-flex items-center justify-center gap-3 rounded-full bg-red px-8 py-4 tech-label text-white shadow-lg shadow-red/20 transition-all hover:-translate-y-0.5 hover:bg-amber hover:text-ink"
                       : "inline-flex items-center justify-center gap-3 rounded-full border border-paper/25 px-8 py-4 tech-label text-paper transition-colors hover:border-paper"}>
                     {c.label}{i === 0 && <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>}
                   </a>

@@ -99,7 +99,7 @@ export default function Nav({ nav, brand }: { nav?: SiteContent["nav"]; brand?: 
           </div>
 
           <div className="flex items-center gap-3">
-            <a href={n.cta.href} className="hidden items-center gap-2 rounded-md bg-ink px-5 py-3 tech-label text-paper transition-all hover:bg-red sm:inline-flex">
+            <a href={n.cta.href} className="hidden items-center gap-2 rounded-full bg-ink px-5 py-3 tech-label text-paper transition-all hover:bg-red sm:inline-flex">
               {n.cta.label}<span aria-hidden>→</span>
             </a>
             <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" className="grid h-11 w-11 place-items-center rounded-md border border-line-strong/20 bg-surface text-ink xl:hidden">
@@ -135,7 +135,7 @@ export default function Nav({ nav, brand }: { nav?: SiteContent["nav"]; brand?: 
                   </div>
                 );
               })}
-              <a href={n.cta.href} onClick={() => setOpen(false)} className="mt-3 inline-flex justify-center rounded-md bg-ink px-5 py-3 tech-label text-paper">{n.cta.label}</a>
+              <a href={n.cta.href} onClick={() => setOpen(false)} className="mt-3 inline-flex justify-center rounded-full bg-ink px-5 py-3 tech-label text-paper">{n.cta.label}</a>
             </div>
           </motion.div>
         )}
