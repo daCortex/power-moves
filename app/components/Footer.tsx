@@ -55,7 +55,7 @@ export default function Footer({
       <div className="border-t border-line">
         <div className="mx-auto grid max-w-[88rem] gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <a href="#top" className="flex items-center gap-3">
+            <a href="/" aria-label="Power Moves — home" className="flex items-center gap-3">
               <span className="grid h-10 w-10 place-items-center rounded-md bg-red text-white shadow-sm"><Bolt className="h-5 w-5" /></span>
               <span className="font-display text-lg font-extrabold uppercase tracking-tight text-ink">{b.name1}<span className="text-red">{b.name2}</span></span>
             </a>

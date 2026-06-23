@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
@@ -17,43 +18,58 @@ export default function Products({ data }: { data?: SiteContent["products"] }) {
         <Reveal><SectionHead index={d.index} kicker={d.kicker} title={d.title} sub={d.sub} /></Reveal>
 
         <Reveal delay={0.1}>
-          <div className="mt-12 grid gap-4 lg:grid-cols-[1.3fr_1fr]">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="mt-12 grid gap-5 lg:grid-cols-[1.25fr_1fr]">
+            {/* image-led product selector */}
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {d.items.map((prod, i) => {
                 const on = i === active;
                 return (
-                  <button key={prod.code} onClick={() => setActive(i)} onMouseEnter={() => setActive(i)}
-                    className={`group flex flex-col justify-between rounded-xl border p-5 text-left transition-all ${on ? "border-ink bg-ink elev" : "border-line bg-surface hover:border-line-strong/30 hover:shadow-md"}`}>
-                    <div className="flex items-center justify-between">
-                      <span className={`font-mono-tech text-xs ${on ? "text-amber" : "text-mute"}`}>{prod.code}</span>
-                      <span className={`h-2 w-2 rotate-45 ${on ? "bg-amber" : "bg-line-strong/30 group-hover:bg-red"}`} />
+                  <button
+                    key={prod.code}
+                    onClick={() => setActive(i)}
+                    onMouseEnter={() => setActive(i)}
+                    className={`group relative aspect-[4/5] overflow-hidden rounded-xl border text-left transition-all ${on ? "border-red ring-2 ring-red/30 elev" : "border-line hover:shadow-md"}`}
+                  >
+                    <Image src={prod.img} alt={prod.name} fill sizes="(min-width:1024px) 18vw, 40vw" className={`object-cover transition-transform duration-700 ${on ? "scale-105" : "group-hover:scale-105"}`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-transparent" />
+                    <span className="absolute left-3 top-3 rounded bg-ink/70 px-2 py-0.5 font-mono-tech text-[0.6rem] text-amber backdrop-blur">{prod.code}</span>
+                    <div className="absolute inset-x-0 bottom-0 p-3.5">
+                      <span className="block font-display text-sm font-bold leading-tight text-white">{prod.name}</span>
+                      <span className="mt-0.5 block text-[0.68rem] text-white/70">{prod.tag}</span>
                     </div>
-                    <span className={`mt-8 block font-display text-base font-bold leading-tight ${on ? "text-paper" : "text-ink"}`}>{prod.name}</span>
-                    <span className={`mt-1 block text-[0.7rem] ${on ? "text-paper/60" : "text-steel"}`}>{prod.tag}</span>
                   </button>
                 );
               })}
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-line bg-surface elev">
-              <motion.div key={p.code} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="flex h-full flex-col p-7 md:p-8">
-                <div className="flex items-center justify-between border-b border-line pb-4">
-                  <span className="tech-label text-ink">Datasheet</span>
-                  <span className="font-mono-tech text-sm text-red">{p.code}</span>
-                </div>
-                <h3 className="mt-5 font-display text-2xl font-extrabold uppercase text-ink">{p.name}</h3>
-                <p className="mt-3 text-sm text-graphite">{p.blurb}</p>
-                <dl className="mt-6 border-t border-line">
-                  {p.specs.map((s) => (
-                    <div key={s.l} className="flex items-center justify-between border-b border-line py-2.5">
-                      <dt className="tech-label text-steel">{s.l}</dt>
-                      <dd className="font-mono-tech text-sm text-ink">{s.v}</dd>
+            {/* datasheet with hero image */}
+            <div className="overflow-hidden rounded-2xl border border-line bg-surface elev">
+              <motion.div key={p.code} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.35 }} className="flex h-full flex-col">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink">
+                  <Image src={p.img} alt={p.name} fill sizes="(min-width:1024px) 36vw, 100vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5">
+                    <div>
+                      <span className="font-mono-tech text-xs text-amber">{p.code}</span>
+                      <h3 className="font-display text-2xl font-bold text-white">{p.name}</h3>
                     </div>
-                  ))}
-                </dl>
-                <a href="#contact" className="group mt-auto inline-flex items-center justify-center gap-3 rounded-full bg-red px-6 py-3.5 tech-label text-white transition-all hover:bg-ink hover:shadow-md">
-                  Enquire about {p.code}<span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
-                </a>
+                    <span className="rounded-full bg-white/15 px-3 py-1 text-[0.7rem] text-white backdrop-blur">{p.tag}</span>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col p-7">
+                  <p className="text-sm text-graphite">{p.blurb}</p>
+                  <dl className="mt-5 border-t border-line">
+                    {p.specs.map((s) => (
+                      <div key={s.l} className="flex items-center justify-between border-b border-line py-2.5">
+                        <dt className="tech-label text-steel">{s.l}</dt>
+                        <dd className="font-mono-tech text-sm text-ink">{s.v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <a href="/contact" className="group mt-6 inline-flex items-center justify-center gap-3 rounded-full bg-red px-6 py-3.5 tech-label text-white transition-all hover:-translate-y-0.5 hover:bg-ink">
+                    Enquire about {p.code}<span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                  </a>
+                </div>
               </motion.div>
             </div>
           </div>

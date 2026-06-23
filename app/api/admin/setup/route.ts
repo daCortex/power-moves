@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { hasDb } from "@/app/lib/cms/db";
 import { countUsers, createUser } from "@/app/lib/cms/store";
-import { signSession, SESSION_COOKIE } from "@/app/lib/cms/auth";
+import { signSession, SESSION_COOKIE, sessionCookieOpts } from "@/app/lib/cms/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -15,9 +15,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Setup already complete. Please sign in." }, { status: 409 });
   }
   const user = await createUser(String(username).trim(), String(password), "admin");
-  const res = NextResponse.json({ user });
-  res.cookies.set(SESSION_COOKIE, signSession(user), {
-    httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 7 * 86400,
-  });
+  const res = NextResponse.json({ user: { id: user.id, username: user.username, role: user.role } });
+  res.cookies.set(SESSION_COOKIE, signSession({ id: user.id, username: user.username, v: user.token_version }), sessionCookieOpts);
   return res;
 }

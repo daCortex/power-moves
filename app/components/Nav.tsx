@@ -57,7 +57,7 @@ export default function Nav({ nav, brand }: { nav?: SiteContent["nav"]; brand?: 
     >
       <div className={`border-b transition-all duration-300 ${scrolled || menu ? "border-line bg-surface/90 backdrop-blur-md" : "border-transparent bg-paper/60 backdrop-blur-sm"}`}>
         <nav className="mx-auto flex h-16 max-w-[88rem] items-center justify-between px-5 md:px-6">
-          <a href="#top" className="group flex items-center gap-3">
+          <a href="/" aria-label="Power Moves — home" className="group flex items-center gap-3">
             <span className="grid h-10 w-10 place-items-center rounded-md bg-red text-white shadow-sm">
               <Bolt className="h-5 w-5" />
             </span>

@@ -1,6 +1,6 @@
 import { sql, hasDb, ensureSchema } from "./db";
 import { defaultContent, type SiteContent } from "./schema";
-import { hashPassword, verifyPassword, type SessionUser } from "./auth";
+import { hashPassword, verifyPassword } from "./auth";
 import { getLocale, deepMerge, overrides, type Locale } from "./locales";
 
 /* ---------- content ---------- */
@@ -41,25 +41,52 @@ export async function countUsers(): Promise<number> {
   return r[0]?.n ?? 0;
 }
 
-export async function createUser(username: string, password: string, role = "editor"): Promise<SessionUser> {
+export type AuthUser = { id: number; username: string; role: string; permissions: string[]; token_version: number };
+
+export async function createUser(username: string, password: string, role = "editor", permissions: string[] = []): Promise<AuthUser> {
   await ensureSchema();
   const hash = hashPassword(password);
   const r = await sql()`
-    insert into pm_users (username, password_hash, role) values (${username}, ${hash}, ${role})
-    returning id, username, role`;
-  return r[0] as SessionUser;
+    insert into pm_users (username, password_hash, role, permissions)
+    values (${username}, ${hash}, ${role}, ${JSON.stringify(permissions)}::jsonb)
+    returning id, username, role, permissions, token_version`;
+  return r[0] as AuthUser;
 }
 
-export async function listUsers() {
+export async function listUsers(): Promise<AuthUser[]> {
   await ensureSchema();
-  return sql()`select id, username, role, created_at from pm_users order by id`;
+  return (await sql()`select id, username, role, permissions, token_version, created_at from pm_users order by id`) as AuthUser[];
 }
 
-export async function authenticate(username: string, password: string): Promise<SessionUser | null> {
+/** Fresh role/permissions/version for session validation. */
+export async function getAuthUser(id: number): Promise<AuthUser | null> {
+  await ensureSchema();
+  const r = await sql()`select id, username, role, permissions, token_version from pm_users where id = ${id}`;
+  return (r[0] as AuthUser) ?? null;
+}
+
+export async function updateUser(id: number, fields: { role?: string; permissions?: string[] }): Promise<void> {
+  await ensureSchema();
+  if (fields.role) await sql()`update pm_users set role = ${fields.role} where id = ${id}`;
+  if (fields.permissions) await sql()`update pm_users set permissions = ${JSON.stringify(fields.permissions)}::jsonb where id = ${id}`;
+}
+
+/** Revoke all of a user's sessions ("kick") by bumping their token version. */
+export async function kickUser(id: number): Promise<void> {
+  await ensureSchema();
+  await sql()`update pm_users set token_version = token_version + 1 where id = ${id}`;
+}
+
+export async function deleteUser(id: number): Promise<void> {
+  await ensureSchema();
+  await sql()`delete from pm_users where id = ${id}`;
+}
+
+export async function authenticate(username: string, password: string): Promise<AuthUser | null> {
   await ensureSchema();
   const r = await sql()`select * from pm_users where username = ${username}`;
   const u = r[0];
   if (!u) return null;
   if (!verifyPassword(password, u.password_hash as string)) return null;
-  return { id: u.id as number, username: u.username as string, role: u.role as string };
+  return { id: u.id as number, username: u.username as string, role: u.role as string, permissions: (u.permissions as string[]) ?? [], token_version: (u.token_version as number) ?? 0 };
 }

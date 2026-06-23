@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { hasDb } from "@/app/lib/cms/db";
 import { authenticate } from "@/app/lib/cms/store";
-import { signSession, SESSION_COOKIE } from "@/app/lib/cms/auth";
+import { signSession, SESSION_COOKIE, sessionCookieOpts } from "@/app/lib/cms/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -11,9 +11,7 @@ export async function POST(req: Request) {
   if (!username || !password) return NextResponse.json({ error: "Enter your username and password." }, { status: 400 });
   const user = await authenticate(String(username).trim(), String(password));
   if (!user) return NextResponse.json({ error: "Invalid username or password." }, { status: 401 });
-  const res = NextResponse.json({ user });
-  res.cookies.set(SESSION_COOKIE, signSession(user), {
-    httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 7 * 86400,
-  });
+  const res = NextResponse.json({ user: { id: user.id, username: user.username, role: user.role } });
+  res.cookies.set(SESSION_COOKIE, signSession({ id: user.id, username: user.username, v: user.token_version }), sessionCookieOpts);
   return res;
 }

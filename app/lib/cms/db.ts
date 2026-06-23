@@ -26,5 +26,8 @@ export async function ensureSchema() {
     role text not null default 'editor',
     created_at timestamptz default now()
   )`;
+  // permission + revocation columns (added for existing databases too)
+  await q`alter table pm_users add column if not exists permissions jsonb not null default '[]'::jsonb`;
+  await q`alter table pm_users add column if not exists token_version int not null default 0`;
   ensured = true;
 }
